@@ -13,6 +13,9 @@
 # Whitelist README.md
 !README.md
 
+# Whitelist .gitignore
+!.gitignore
+
 # Explicitly ignore ReplayDetails.md
 ReplayDetails.md
 
