@@ -240,7 +240,9 @@ pip install -r requirements.txt
 
 # Quick Start
 
-## Create Engine
+## Push-Based Processing
+
+### 1. Definition
 
 ```python
 from ReplayEngine import create_engine, ReplayMode
@@ -252,70 +254,75 @@ engine = create_engine(
 )
 ```
 
----
+### 2. Usage
 
-# Push-Based Example
-
-## Using a Callback
-
+**Using a Callback:**
 ```python
-def on_alert(envelope):
-    print(envelope["replay_time"])
+def process_alert(envelope):
+    print(f"[{envelope['replay_time']}] Received alert: {envelope.get('alert', {})}")
+    # Add your custom enrichment or routing logic here
 
-engine.register_callback(on_alert)
-
+engine.register_callback(process_alert)
 engine.start()
 ```
 
----
-
-## Using a Queue
-
+**Using a Queue:**
 ```python
 import queue
 
 alert_queue = queue.Queue()
-
 engine.register_queue(alert_queue)
-
 engine.start()
 
+# In a separate worker thread or process:
 while True:
     try:
         alert = alert_queue.get(timeout=1)
-        print(alert)
+        print(f"Processing alert: {alert}")
     except queue.Empty:
+        # Handle empty queue or exit condition
         pass
 ```
 
----
-
-# Playback Controls
+### 3. Playback Controls
 
 ```python
+# Start processing alerts
 engine.start()
 
+# Pause alert delivery
 engine.pause()
 
+# Resume alert delivery
 engine.resume()
 
+# Stop the engine completely
 engine.stop()
 ```
 
 ---
 
-# Pull-Based Example
+## Pull-Based Processing
+
+### 1. Definition
 
 ```python
 from ReplayEngine import create_engine, ReplayMode
 
 engine = create_engine(
     filepath="inputs",
+    include_ground_truth=False,
     mode=ReplayMode.SEQUENTIAL
 )
+```
 
+### 2. Usage
+
+```python
+# The replay() method returns a generator yielding alerts one by one
 for envelope in engine.replay():
-    print(envelope)
+    print(f"Pulled alert: {envelope['replay_time']}")
+    # Apply your own sequential analytics logic here
 ```
 
 ---
