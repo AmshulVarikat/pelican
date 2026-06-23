@@ -1,0 +1,29 @@
+# Ignore everything by default
+*
+
+# OS Generated Files
+.DS_Store
+
+# Whitelist directories
+!*/
+
+# Whitelist Python source files
+!*.py
+
+# Whitelist README.md
+!README.md
+
+# Explicitly ignore ReplayDetails.md
+ReplayDetails.md
+
+# Ignore __pycache__ and other Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore all contents of the inputs folder
+inputs/*
+
+# Except for the .gitkeep file so the inputs folder is tracked
+!inputs/.gitkeep
