@@ -4,15 +4,15 @@
 
 Rather than requiring a live SIEM deployment, Pelican replays previously collected security alerts from exported datasets, allowing researchers and developers to build, test, and evaluate security analytics pipelines in a repeatable and reproducible manner.
 
-Pelican was originally developed as part of research into **Context-Aware Alert Prioritization Using Asset Criticality and Threat Intelligence**.
+Pelican was originally developed as part of research into **SOC Analyst Fatigue Reduction Framework**
 
 ---
 
 # Why Pelican?
 
-Building and maintaining a Security Operations Center (SOC) lab can be expensive and time-consuming.
+Building and maintaining a Security Operations Center (SOC) lab can be expensive, time consuming, complex or all of the above.
 
-Most alert prioritization and enrichment research only needs realistic security alerts—not a permanently running SIEM environment.
+Most alert prioritization and enrichment research only needs realistic security alerts, not a permanently running SIEM environment. Pelican simplifies testing by providing a replay framework that can be used to replay alerts from a dataset after first generating it. 
 
 Pelican enables a workflow where:
 
